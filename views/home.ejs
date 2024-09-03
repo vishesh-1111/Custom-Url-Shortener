@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body >
+    
+             <h1>SHORT URL GENERATOR</h1>
+             <h3>Please follow HTTP  protocol</h3>
+         
+           
+
+           <ul>
+            <% alldata.forEach(element => { %>
+                <li style="margin-bottom: 10px;">
+                    <span style="margin-right: 20px;"><%= element.url %></span>
+                    <span><%= element.key %></span>
+                </li>
+            <% }) %>
+        </ul>
+              
+        <input 
+        type="text" 
+        id="rid";
+        placeholder="https://example.com">
+          
+        <script>
+            async function f(){
+                    console.log('start');
+            const lnk = document.getElementById('rid').value;
+            const response = await fetch('/', {
+                method : "POST",
+                headers : {
+                   'content-type' :  "application/json"
+                },
+                body :JSON.stringify({url : lnk})
+
+            })
+           }
+                
+        </script>
+
+            <form onsubmit=" f();" class="my-form">
+                <input type="submit" value="Submit">
+            </form>
+
+</body>
+</html>
