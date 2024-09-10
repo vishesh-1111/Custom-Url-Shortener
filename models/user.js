@@ -1,22 +1,24 @@
 const mongoose = require('mongoose');
 
 const userschema=new mongoose.Schema({
-  url : {
+  name : {
     type :String,
     require:true,
   },
-  key : {
+  email : {
      type :String,
-     require:true
+     require:true,
+     unique :true,
+  },
+  password : {
+    type: String,
+    require : true,
   },
   
-    visited_history : {
-      type : Array,
-    }
   },
   {timestamps:true}   
   );
 
                                         
-const url_ =  mongoose.model('short_url',userschema);
-module.exports = url_; 
+const userc =  mongoose.model('usercollection',userschema);
+module.exports = userc; 

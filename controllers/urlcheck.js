@@ -1,5 +1,5 @@
  function isValidHttpUrl(string) {
-    console.log('hello from checker');
+
     let url;
     
     try {

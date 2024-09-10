@@ -18,30 +18,12 @@
             <% }) %>
         </ul>
               
-        <input 
-        type="text" 
-        id="rid";
-        placeholder="https://example.com">
-          
-        <script>
-            async function f(){
-                    console.log('start');
-            const lnk = document.getElementById('rid').value;
-            const response = await fetch('/', {
-                method : "POST",
-                headers : {
-                   'content-type' :  "application/json"
-                },
-                body :JSON.stringify({url : lnk})
-
-            })
-           }
-                
-        </script>
-
-            <form onsubmit=" f();" class="my-form">
-                <input type="submit" value="Submit">
-            </form>
-
+        <form action="/url" method="post">
+            <input type="text" name="url">URL
+            <button type="submit" name="submit">
+               Generate
+            </button>
+       
+           </form>
 </body>
 </html>

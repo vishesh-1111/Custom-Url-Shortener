@@ -1,40 +1,31 @@
-const urlcollection = require('../models/user.js');
-const ShortUniqueId = require('short-unique-id');
-const uid = new ShortUniqueId({ length: 5 });
+const model =require('../models/user');
 
-  async function GetAllUrlData() {
-      return  await urlcollection.find()
-  
-    }
-    async function CreateShortUrl(userurl) {
-        const short_id = uid.rnd();
-          
-        await urlcollection.create({
-          url : userurl,
-          key : short_id,
-        })
 
-      return short_id;
-     }
+ async function GetUser(req,res){
+    const {uemail,upassword}= req.body;
     
-
-     async function GetUrlByShortId(id) {
-      
-      const short_id = id;
-    return  await urlcollection.findOne(
-        {key:id},
-        {url:1,_id:0}
-      ).then((res)=>{
-        return res.url;
-      })
-      .catch((err)=>{
-        console.log(err);
-      }) 
-   }
-
-module.exports = {
-    GetAllUrlData,
-    CreateShortUrl,
-    GetUrlByShortId,
+  return  model.findOne({ email: uemail }, { password: upassword })
 }
 
+
+async function CreateUser(req,res){
+    const {uname,uemail,upassword}=req.body;
+
+    model.create({
+       name : uname,
+       email : uemail,
+       password: upassword  
+    }).then((user)=>{
+        console.log(user);
+        return user;
+    }).catch((error)=>{
+        console.log(error);
+        return null;
+    })
+}
+
+
+module.exports = {
+    GetUser,
+    CreateUser,
+}
