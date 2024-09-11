@@ -15,7 +15,7 @@ router
 
     const user = GetUserBySessionId(authid);
 
-
+     
     const alldata= await GetAllUrlData(req,res);
     res.render('home',{alldata});
 })

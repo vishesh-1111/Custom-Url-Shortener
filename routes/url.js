@@ -22,14 +22,12 @@ router
 
  router.route('/')  
 .post(async(req,res)=>{
-    console.log(req.body);
     var userurl = req.body.url;
     var is_valid=isValidHttpUrl(userurl);
-    
     if(is_valid){
             const id = await CreateShortUrl(req,res);           
-            const alluserurl= await GetAllUrlData(req,res)
-            return res.render('home',{alluserurl});
+            const alldata= await GetAllUrlData(req,res);
+            return res.render('home',{alldata});
     }
     else{
         return res.status(400).json({mssg:"invalid"});

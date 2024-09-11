@@ -4,7 +4,10 @@ const model =require('../models/user');
  async function GetUser(req,res){
     const {uemail,upassword}= req.body;
     
-  return  model.findOne({ email: uemail }, { password: upassword })
+  return  model.findOne({
+     email : uemail,
+     password : upassword,
+  })
 }
 
 

@@ -1,14 +1,21 @@
+const jwt = require('jsonwebtoken');
+const sec ='secret';
 
-const mp = new Map();
- 
+function SetUserBySessionId(user){
 
-function SetUserBySessionId(id,user){
-    mp.set(id,user);
-   }
+    var token = jwt.sign({user}, sec);
+    return token;
+}
 
-function GetUserBySessionId(id){
- const user = mp.get(id);
- return user;
+function GetUserBySessionId(token){
+    var u =null;
+ jwt.verify(token,sec,(err,dec)=>{
+  
+     
+     u=  dec?.user;
+})
+
+return u;
 }
 
 

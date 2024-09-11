@@ -9,7 +9,8 @@ const { GetUserBySessionId } = require('../controllers/auth');
   }
 
 
-    const user =  GetUserBySessionId(sid);
+    const user = GetUserBySessionId(sid);
+    
     
     if (!user) {
       console.log('User not found for session ID:', sid);

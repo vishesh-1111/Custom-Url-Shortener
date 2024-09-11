@@ -3,7 +3,7 @@ const ShortUniqueId = require('short-unique-id');
 const uid = new ShortUniqueId({ length: 5 });
 
   async function GetAllUrlData(req,res) {
-    
+   if(req.user==null)return []; 
       return  await urlcollection.find({createdBy:req?.user._id}); 
   
     }
